@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
             break;
         case '/html':
             res.writeHead(200, {'content-type': 'text/html'});
-            res.end(html);
+            res.end(html.toString());
             break;
         case '/file':
             fs.readFile('./page.html', (err, data) => {
@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
                     res.end('Not Found!');
                 }else{
                     res.writeHead(200, {'content-type': 'text/html'});
-                    res.end(data);
+                    res.end(data.toString());
                 }
             })
             break;
