@@ -62,7 +62,7 @@ const server = http.createServer((req, res) => {
                     console.log(query);
                 }
             });
-
+            
             res.end(JSON.stringify({ok: 'ok'}, null, 2));
             break;
         default:
