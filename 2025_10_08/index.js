@@ -67,7 +67,7 @@ const server = http.createServer((req, res) => {
             break;
         default:
             var mime_type = mime.lookup(pathname);
-            fileName = './assets/' + pathname;
+            fileName = './assets' + pathname;
             fs.readFile(fileName, (err, data) => {
                 if (err){
                     res.writeHead(404, {"content-type": "application/json"});
