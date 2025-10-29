@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
+
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, 'static/strona_glowna.html'));
@@ -22,13 +24,8 @@ app.get('/kontakt', (req, res) => {
 });
 
 app.post('/kontakt', (req, res) => {
-    res.status(200);
-    const data = [];
-    for (let key in req.body) {
-        data.push({key: key, value: req.body[key]});
-        console.log(key + ': ' + req.body[key]);
-    }
-    res.status(302).setHeader('location', '/');
+    console.log(req.body);
+    res.status(302).redirect('/');
 })
 
 app.listen(PORT, () => {
