@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontakt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="/">Strona główna</a>
+        <a href="/o-nas">O nas</a>
+        <a href="/oferta">Oferta</a>
+        <a href="/kontakt">Kontakt</a>
+    </header>
+    <h1>Kontakt</h1>
+    <p>Zapraszamy do kontaktu z naszym zespołem – chętnie odpowiemy na wszystkie pytania i pomożemy w doborze najlepszego rozwiązania. Zależy nam na tym, aby każda współpraca przebiegała sprawnie i w przyjaznej atmosferze.</p>
+    <p>Jesteśmy dostępni telefonicznie, mailowo oraz poprzez formularz kontaktowy znajdujący się na stronie. Niezależnie od wybranej formy kontaktu, gwarantujemy szybką odpowiedź i pełne zaangażowanie w każdą sprawę.</p>
+    <p>Jeśli wolisz spotkanie osobiste, zapraszamy do naszego biura. Ustalimy dogodny termin, aby porozmawiać o szczegółach i przedstawić konkretne propozycje dopasowane do Twoich oczekiwań.</p>
+    <p>Cenimy sobie bezpośrednią komunikację, dlatego zawsze staramy się zrozumieć potrzeby naszych klientów i udzielić wsparcia na każdym etapie współpracy. Skontaktuj się z nami już dziś – jesteśmy tu, by pomóc.</p>
+    <form action="/kontakt" method="post">
+        <label for="imie">Imię:</label><br>
+        <input type="text" id="imie" name="imie" required><br><br>
+
+        <label for="nazwisko">Nazwisko:</label><br>
+        <input type="text" id="nazwisko" name="nazwisko" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="wiadomosc">Treść wiadomości:</label><br>
+        <textarea id="wiadomosc" name="wiadomosc" rows="5" cols="40" required></textarea><br><br>
+
+        <button type="submit">Wyślij</button>
+    </form>
+    <footer>
+        <p>Gustaw Grześkowiak 4C</p>
+    </footer>
+</body>
+</html>
