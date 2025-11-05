@@ -1,0 +1,58 @@
+body{
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+a{
+    margin: 10px;
+}
+
+h1{
+    width: 100vw;
+    padding: 10px;
+}
+
+p{
+    padding-left: 5px;
+}
+
+header{
+    background-color: magenta;
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+table, tr, td, th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table{
+    margin: 5px;
+}
+
+form{
+    margin: 5px;
+}
+
+p{
+    color: purple;
+}
+
+img{
+    width: 100%;
+}
+
+footer{
+    background-color: magenta;
+    width: 100vw;
+    height: 20vh;
+    text-align: center;
+}
