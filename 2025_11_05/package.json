@@ -1,13 +1,14 @@
 {
   "name": "2025_10_29",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "express + mariaDB",
+  "type": "module",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "guc10",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0",
