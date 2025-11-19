@@ -10,29 +10,34 @@ datasource db {
 
 model Wpis {
   id          Int       @id @default(autoincrement())
-  text        String    @db.VarChar(255)
-  kategoriaId Int
-  komentarzId Int
-  Komentarz   Komentarz @relation(fields: [komentarzId], references: [id], onUpdate: Restrict, map: "Wpis_ibfk_1")
-  Kategoria   Kategoria @relation(fields: [kategoriaId], references: [id], onUpdate: Restrict, map: "Wpis_ibfk_2")
+  Text        String    @db.VarChar(255)
+  KategoriaId Int
+  KomentarzId Int
+  Komentarz   Komentarz @relation(fields: [KomentarzId], references: [id], onUpdate: Restrict, map: "Wpis_ibfk_1")
+  Kategoria   Kategoria @relation(fields: [KategoriaId], references: [id], onUpdate: Restrict, map: "Wpis_ibfk_2")
 
-  @@index([kategoriaId], map: "kategoriaId")
-  @@index([komentarzId], map: "komentarzId")
+  @@index([KategoriaId], map: "kategoriaId")
+  @@index([KomentarzId], map: "komentarzId")
 }
 
 model Kategoria {
   id        Int                 @id @default(autoincrement())
-  kategoria Kategoria_kategoria
+  Kategoria Kategoria_kategoria
+  Opis      String              @db.VarChar(255)
   Wpis      Wpis[]
 }
 
 model Komentarz {
   id        Int    @id @default(autoincrement())
-  komentarz String @db.VarChar(255)
+  Komentarz String @db.VarChar(255)
   Wpis      Wpis[]
 }
 
 enum Kategoria_kategoria {
   fajne
   niefajne
+  cool
+  disgusting
+  freaky
+  insane
 }

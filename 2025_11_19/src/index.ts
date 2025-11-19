@@ -1,28 +1,16 @@
 import 'dotenv/config'
-import { PrismaClient } from '../generated/prisma/client'
 import express from 'express'
-import { router } from './router'
+
+import { wpisRouter } from './wpis-router'
+import { komentarzRouter } from './komentarz-router'
+import { kategoriaRouter } from './kategoria-router'
 
 const app = express()
-const prisma = new PrismaClient()
 
-app.use('/', router)
+app.use('/wpis', wpisRouter)
+app.use('/komentarz', komentarzRouter)
+app.use('/kategoria', kategoriaRouter)
 
 app.listen(3000, () => {
   console.log('Server started on port 3000')
 })
-
-async function main() {
-  const allWpis = await prisma.wpis.findMany()
-  console.log(allWpis)
-}
-
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
