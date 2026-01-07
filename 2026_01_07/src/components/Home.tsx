@@ -1,6 +1,7 @@
 export default function Home(){
     return (
         <>
+            <h1>Dom</h1>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mattis augue quam. Ut congue dignissim est ut molestie. Praesent magna elit, ultricies sed fermentum posuere, cursus quis erat. Etiam rutrum neque sed nibh porttitor vestibulum. Pellentesque ligula sapien, pretium vitae dolor non, luctus auctor enim. Fusce porttitor lacus non augue fringilla porta. Cras vel purus neque. Vestibulum vel quam sit amet purus gravida varius.
             </p>
