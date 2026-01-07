@@ -1,0 +1,9 @@
+@mixin comp(){
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  background-color: #3B7F4E;
+}
+
+$font_one: #d3d3d3;

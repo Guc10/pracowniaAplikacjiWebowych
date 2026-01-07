@@ -1,0 +1,19 @@
+@use 'variables';
+
+header{
+  @include variables.comp();
+
+  a {
+    font-size: 3rem;
+    margin-block: 1rem;
+    margin-inline: 2rem;
+    color: variables.$font_one;
+    text-decoration: none;
+
+    transition: color 0.4s ease-in-out;
+
+    &:hover {
+      color: #c38686;
+    }
+  }
+}

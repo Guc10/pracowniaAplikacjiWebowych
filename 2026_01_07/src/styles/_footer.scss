@@ -1,0 +1,11 @@
+@use 'variables';
+
+footer{
+  @include variables.comp();
+
+  p{
+    color: variables.$font_one;
+    margin-block: 1rem;
+    font-size: 1.5rem;
+  }
+}
