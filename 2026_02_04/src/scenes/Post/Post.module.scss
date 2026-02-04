@@ -1,0 +1,26 @@
+@import '../../styles/_vars.scss';
+
+.Main {
+  max-width: 900px;
+  margin: 2.4rem auto;
+  padding: 2.4rem;
+  background: $card-bg;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  color: $text;
+
+  h1 {
+    font-size: 2.8rem;
+    margin: 0 0 1.2rem 0;
+    color: $text;
+    line-height: 1.15;
+  }
+
+  p {
+    font-size: 1.6rem;
+    color: $muted;
+    line-height: 1.7;
+    margin: 0 0 1.2rem 0;
+  }
+}

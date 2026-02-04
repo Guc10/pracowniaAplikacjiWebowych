@@ -1,0 +1,26 @@
+@import '../../styles/vars';
+
+.Footer {
+  width: 100%;
+  background: $muted;
+  color: $bg;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 3rem;
+  border-top: 1px solid rgba($text, 0.06);
+  box-shadow: 0 -4px 10px rgba($text, 0.03);
+
+  a {
+    color: $accent;
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.6rem;
+    transition: background 180ms ease, color 180ms ease;
+
+    &:hover,
+    &:focus {
+      background: rgba($accent, 0.08);
+      color: darken($accent, 6%);
+    }
+  }
+}

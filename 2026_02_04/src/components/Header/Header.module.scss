@@ -1,0 +1,27 @@
+@import '../../styles/vars';
+
+.Header {
+  width: 100%;
+  background: $muted;
+  color: $bg;
+  text-align: center;
+  font-size: 2rem;
+  padding: 4rem;
+  box-shadow: 0 4px 12px rgba($text, 0.04);
+
+  a {
+    color: $bg;
+    text-decoration: none;
+    margin-inline: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.8rem;
+    background: transparent;
+    transition: background 200ms ease, transform 120ms ease;
+
+    &:hover,
+    &:focus {
+      background: darken($muted, 8%);
+      transform: translateY(-2px);
+    }
+  }
+}
