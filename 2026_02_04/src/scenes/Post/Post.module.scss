@@ -1,26 +1,91 @@
-@import '../../styles/_vars.scss';
+@use '../../styles/_vars.scss' as v;
 
 .Main {
   max-width: 900px;
   margin: 2.4rem auto;
   padding: 2.4rem;
-  background: $card-bg;
-  border: 1px solid $border;
-  border-radius: $radius;
-  box-shadow: $shadow;
-  color: $text;
+  background: v.$card-bg;
+  border: 1px solid v.$border;
+  border-radius: v.$radius;
+  box-shadow: v.$shadow;
+  color: v.$text;
 
   h1 {
     font-size: 2.8rem;
     margin: 0 0 1.2rem 0;
-    color: $text;
+    color: v.$text;
     line-height: 1.15;
   }
 
   p {
     font-size: 1.6rem;
-    color: $muted;
+    color: v.$muted;
     line-height: 1.7;
     margin: 0 0 1.2rem 0;
   }
+}
+
+.PostContent {
+  padding-bottom: 2.4rem;
+  border-bottom: 2px solid v.$border;
+  margin-bottom: 2.4rem;
+}
+
+.CommentsSection {
+  h2 {
+    font-size: 2rem;
+    margin: 0 0 1.6rem 0;
+    color: v.$text;
+  }
+}
+
+.NoComments {
+  color: v.$muted;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem;
+}
+
+.CommentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.Comment {
+  padding: 1.6rem;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid v.$border;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-left-color: v.$text;
+  }
+}
+
+.CommentHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+
+  strong {
+    font-size: 1.5rem;
+    color: v.$text;
+    text-transform: capitalize;
+  }
+}
+
+.CommentEmail {
+  font-size: 1.3rem;
+  color: v.$muted;
+  opacity: 0.8;
+}
+
+.CommentBody {
+  font-size: 1.4rem;
+  color: v.$muted;
+  line-height: 1.6;
+  margin: 0;
 }

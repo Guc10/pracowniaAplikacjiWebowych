@@ -1,16 +1,16 @@
-@import '../../styles/vars';
+@use '../../styles/vars' as v;
 
 .Header {
   width: 100%;
-  background: $muted;
-  color: $bg;
+  background: v.$muted;
+  color: v.$bg;
   text-align: center;
   font-size: 2rem;
   padding: 4rem;
-  box-shadow: 0 4px 12px rgba($text, 0.04);
+  box-shadow: 0 4px 12px rgba(v.$text, 0.04);
 
   a {
-    color: $bg;
+    color: v.$bg;
     text-decoration: none;
     margin-inline: 2rem;
     padding: 1rem 1.5rem;
@@ -20,7 +20,7 @@
 
     &:hover,
     &:focus {
-      background: darken($muted, 8%);
+      background: darken(v.$muted, 8%);
       transform: translateY(-2px);
     }
   }

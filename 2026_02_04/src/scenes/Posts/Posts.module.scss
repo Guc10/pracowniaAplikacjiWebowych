@@ -1,29 +1,29 @@
-@import '../../styles/_vars.scss';
+@use '../../styles/_vars.scss' as v;
 
 .Main {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem $gutter;
+  padding: 3rem v.$gutter;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  color: $text;
+  color: v.$text;
   background: transparent;
   box-sizing: border-box;
   font-size: 1.8rem;
 }
 
 .PostsPost {
-  background: $card-bg;
-  border: 1px solid $border;
-  border-radius: $radius;
+  background: v.$card-bg;
+  border: 1px solid v.$border;
+  border-radius: v.$radius;
   padding: 1.6rem;
-  box-shadow: $shadow;
+  box-shadow: v.$shadow;
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 
   &:hover {
     transform: translateY(-4px);
-    border-color: darken($border, 6%);
+    border-color: darken(v.$border, 6%);
     box-shadow: 0 8px 20px rgba(45,45,45,0.08);
   }
 }
@@ -31,14 +31,14 @@
 .PostsPostTitle {
   font-size: 1.4rem;
   margin: 0 0 0.6rem 0;
-  color: $text;
+  color: v.$text;
   line-height: 1.25;
   text-transform: none;
 }
 
 .PostsPostBody {
   font-size: 1.2rem;
-  color: $muted;
+  color: v.$muted;
   line-height: 1.6;
   margin: 0 0 1rem 0;
 }
@@ -46,7 +46,7 @@
 .PostsPostLink {
   display: inline-block;
   padding: 0.6rem 1rem;
-  background: $accent;
+  background: v.$accent;
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
@@ -54,6 +54,6 @@
   transition: background 120ms ease;
 
   &:hover {
-    background: lighten($accent, 8%);
+    background: lighten(v.$accent, 8%);
   }
 }
