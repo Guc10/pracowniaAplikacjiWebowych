@@ -1,0 +1,25 @@
+@import 'styles/_vars.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::before, &::after {
+    box-sizing: border-box;
+  }
+}
+
+html {
+  font-size: 10px;
+  font-family: Roboto, sans-serif;
+  color: $text;
+  background: $bg;
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,59 @@
+@use '../../styles/_vars.scss' as v;
+
+.Main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem v.$gutter;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  color: v.$text;
+  background: transparent;
+  box-sizing: border-box;
+  font-size: 1.8rem;
+}
+
+.PostsPost {
+  background: v.$card-bg;
+  border: 1px solid v.$border;
+  border-radius: v.$radius;
+  padding: 1.6rem;
+  box-shadow: v.$shadow;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: darken(v.$border, 6%);
+    box-shadow: 0 8px 20px rgba(45,45,45,0.08);
+  }
+}
+
+.PostsPostTitle {
+  font-size: 1.4rem;
+  margin: 0 0 0.6rem 0;
+  color: v.$text;
+  line-height: 1.25;
+  text-transform: none;
+}
+
+.PostsPostBody {
+  font-size: 1.2rem;
+  color: v.$muted;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.PostsPostLink {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  background: v.$accent;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  transition: background 120ms ease;
+
+  &:hover {
+    background: lighten(v.$accent, 8%);
+  }
+}
