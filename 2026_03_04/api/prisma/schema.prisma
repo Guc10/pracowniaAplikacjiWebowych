@@ -1,0 +1,32 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated/client"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Wpis {
+  id          Int         @id @default(autoincrement())
+  Title       String
+  Body        String
+  KategoriaId Int
+  Kategoria   Kategoria   @relation(fields: [KategoriaId], references: [id])
+  Komentarze  Komentarz[]
+}
+
+model Kategoria {
+  id        Int    @id @default(autoincrement())
+  Kategoria String
+  Opis      String
+  Wpisy     Wpis[]
+}
+
+model Komentarz {
+  id        Int    @id @default(autoincrement())
+  Komentarz String
+  WpisId    Int
+  Wpis      Wpis   @relation(fields: [WpisId], references: [id], onDelete: Cascade)
+}

@@ -1,6 +1,5 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -21,9 +20,9 @@ model Wpis {
 }
 
 model Kategoria {
-  id        Int                 @id @default(autoincrement())
-  Kategoria Kategoria_kategoria
-  Opis      String              @db.VarChar(255)
+  id        Int    @id @default(autoincrement())
+  Kategoria String @db.VarChar(255)
+  Opis      String @db.VarChar(255)
   Wpis      Wpis[]
 }
 
@@ -31,13 +30,4 @@ model Komentarz {
   id        Int    @id @default(autoincrement())
   Komentarz String @db.VarChar(255)
   Wpis      Wpis[]
-}
-
-enum Kategoria_kategoria {
-  fajne
-  niefajne
-  cool
-  disgusting
-  freaky
-  insane
 }

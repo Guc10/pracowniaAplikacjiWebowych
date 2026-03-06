@@ -1,6 +1,5 @@
 import express from 'express'
-import { PrismaClient } from '../generated/prisma/client'
-import { Kategoria_kategoria } from '../generated/prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 const kategoriaRouter = express.Router()
@@ -27,13 +26,6 @@ kategoriaRouter.post('/post', async (req, res) => {
   const { cat, opis } = req.body;
 
   try {
-    if (cat && !Object.values(Kategoria_kategoria).includes(cat as Kategoria_kategoria)) {
-      return res.status(400).json({
-        "error": `Invalid category: ${cat}`,
-        "validCategories": Object.values(Kategoria_kategoria)
-      });
-    }
-
     const addKategoria = await prisma.kategoria.create({
       data: {
         Kategoria: cat,
@@ -52,13 +44,6 @@ kategoriaRouter.put('/put/:id', async (req, res) => {
   const { cat, opis } = req.body;
 
   try {
-    if (cat && !Object.values(Kategoria_kategoria).includes(cat as Kategoria_kategoria)) {
-      return res.status(400).json({
-        "error": `Invalid category: ${cat}`,
-        "validCategories": Object.values(Kategoria_kategoria)
-      });
-    }
-
     const updatedKategoria = await prisma.kategoria.update({
       where: {
         id: parseInt(id)
