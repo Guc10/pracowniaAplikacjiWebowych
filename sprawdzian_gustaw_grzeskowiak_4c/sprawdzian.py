@@ -1,116 +1,109 @@
-__copyright__ = "Zespół Szkół Komunikacji"
-__author__ = "Gustaw Grześkowiak 4C"
+__copyright__: str = "Zespół Szkół Komunikacji"
+__author__: str = "Gustaw Grześkowiak 4C"
 
 import datetime
 import json
+import os
+import sys
 
-from models.Grades import Grades
-from models.Student import Student
-from models.Subject import Subject
-from models.Teacher import Teacher
-from year_grade import year_grade
+sys.path.insert(0, os.path.dirname(__file__))
 
-teachers: list[Teacher] = []
-subjects: list[Subject] = []
-students: list[Student] = []
-grades: list[Grades] = []
+from models.Author import Author
+from models.Book import Book
+from models.Reader import Reader
+from models.Loan import Loan
+from loan_status import loan_status
 
-with open('teachers.txt', 'r') as f:
+BASE_DIR: str = os.path.dirname(__file__)
+
+authors: list[Author] = []
+with open(os.path.join(BASE_DIR, "authors.txt"), encoding="utf-8") as f:
     for line in f:
-        parts = line.strip().split(' ')
-        if len(parts) >= 3:
-            teachers.append(Teacher(int(parts[0]), parts[1], parts[2]))
+        parts = line.strip().split()
+        if len(parts) == 3:
+            _id, first_name, last_name = int(parts[0]), parts[1], parts[2]
+            authors.append(Author(_id, first_name, last_name))
 
-with open('subjects.txt', 'r') as f:
+books: list[Book] = []
+with open(os.path.join(BASE_DIR, "books.txt"), encoding="utf-8") as f:
     for line in f:
-        parts = line.strip().split(' ')
-        teacher_id = int(parts[2])
-        teacher = next((t for t in teachers if t._id == teacher_id), None)
+        parts = line.strip().split()
+        if len(parts) == 4:
+            _id, title, author_id, year = int(parts[0]), parts[1], int(parts[2]), int(parts[3])
+            author = next((a for a in authors if a._id == author_id), None)
+            if author is None:
+                continue
+            books.append(Book(_id, title, author, year))
 
-        if teacher:
-            subjects.append(Subject(int(parts[0]), parts[1], teacher))
-
-with open('students.txt', 'r') as f:
+readers: list[Reader] = []
+with open(os.path.join(BASE_DIR, "readers.txt"), encoding="utf-8") as f:
     for line in f:
-        parts = line.strip().split(' ')
-        birthdate = datetime.datetime.strptime(parts[3], '%Y-%m-%d').date()
-        students.append(Student(int(parts[0]), parts[1], parts[2], birthdate))
+        parts = line.strip().split()
+        if len(parts) == 4:
+            _id, first_name, last_name, birthdate_str = int(parts[0]), parts[1], parts[2], parts[3]
+            birth_date = datetime.datetime.strptime(birthdate_str, '%Y-%m-%d').date()
+            readers.append(Reader(_id, first_name, last_name, birth_date))
 
-with open('grades.txt', 'r') as f:
+loans: list[Loan] = []
+with open(os.path.join(BASE_DIR, "loans.txt"), encoding="utf-8") as f:
     for line in f:
-        parts = line.strip().split(' ')
-        student_id = int(parts[0])
-        subject_id = int(parts[1])
-        grade_values = [int(g) for g in parts[2].split(',')]
+        parts = line.strip().split()
+        if len(parts) == 3:
+            reader_id, book_id, days = int(parts[0]), int(parts[1]), int(parts[2])
+            reader = next((r for r in readers if r._id == reader_id), None)
+            book = next((b for b in books if b._id == book_id), None)
+            if reader is None or book is None:
+                continue
+            loans.append(Loan(reader, book, days))
 
-        student = next((s for s in students if s._id == student_id), None)
-        subject = next((s for s in subjects if s._id == subject_id), None)
+print("Historia wypożyczeń")
 
-        if student and subject:
-            g = Grades(student, subject)
-            for gv in grade_values:
-                g.add_grade(gv)
-            grades.append(g)
+readers_json: list[dict] = []
 
-print("Oceny i średnie poszczególnych uczniów\n")
-
-students_json: list[dict] = []
-
-for student in students:
-    print(f"{student}:")
-    student_data: dict = {str(student): {}}
-
-    for subject in subjects:
-        student_grades = next((g for g in grades if g.student._id == student._id and g.subject._id == subject._id), None)
-        if student_grades:
-            avg = round(student_grades.get_average(), 2)
-            yg = year_grade(avg)
-            grades_str = ', '.join(str(g) for g in student_grades.get_grades())
-
-            print(f"\t{subject.name}:")
-            print(f"\t\tOceny: {grades_str}")
-            print(f"\t\tŚrednia: {avg}")
-            print(f"\t\tOcena końcowa: {yg}")
-
-            student_data[str(student)][subject.name] = {
-                "Oceny": grades_str,
-                "Srednia": avg,
-                "Ocena roczna": yg
-            }
-
-    students_json.append(student_data)
+for reader in readers:
+    reader_loans = [l for l in loans if l.reader._id == reader._id]
+    print(f"{reader}:")
+    reader_entries: list[dict] = []
+    for loan in reader_loans:
+        status = loan_status(loan.days)
+        fee = loan.get_feet()
+        print(f"Książka: {loan.book.title}")
+        print(f"Dni: {loan.days}")
+        print(f"Status: {status}")
+        print(f"Opłata: {fee} zł")
+        reader_entries.append({
+            "Tytuł": loan.book.title,
+            "Dni": loan.days,
+            "Status": status,
+            "Opłata": fee
+        })
     print()
+    readers_json.append({str(reader): reader_entries})
 
-with open('students.json', 'w', encoding='utf-8') as f:
-    json.dump(students_json, f, indent=4, ensure_ascii=False)
+with open(os.path.join(BASE_DIR, "readers.json"), "w", encoding="utf-8") as f:
+    json.dump(readers_json, f, indent=4, ensure_ascii=False)
 
-print('=' * 50)
+print("=" * 30)
 print()
 
-subjects_json: list[dict] = []
+books_json: list[dict] = []
 
-for subject in subjects:
-    subject_grades = [g for g in grades if g.subject._id == subject._id]
-    all_grades: list[int] = []
-    for g in subject_grades:
-        all_grades.extend(g.get_grades())
-
-    avg = round(sum(all_grades) / len(all_grades), 2) if all_grades else 0.0
-    grades_str = ', '.join(str(g) for g in all_grades)
-
-    print(f"{subject.name}:")
-    print(f"\tNauczyciel: {subject.teacher}")
-    print(f"\tOceny: {grades_str}")
-    print(f"\tŚrednia: {avg}")
+for book in books:
+    book_loans = [l for l in loans if l.book._id == book._id]
+    count = len(book_loans)
+    avg = round(sum(l.days for l in book_loans) / count, 1) if count > 0 else 0.0
+    print(f"{book.title}:")
+    print(f"Autor: {book.author}")
+    print(f"Liczba wypożyczeń: {count}")
+    print(f"Średni czas: {avg} dni")
     print()
-
-    subjects_json.append({
-        subject.name: {
-            "Nauczyciel": str(subject.teacher),
-            "Oceny": all_grades,
-            "Srednia": avg
+    books_json.append({
+        book.title: {
+            "Autor": str(book.author),
+            "Wypożyczenia": [l.days for l in book_loans],
+            "Średnia": avg
         }
     })
 
-with open('subjects.json', 'w', encoding='utf-8') as f:
-    json.dump(subjects_json, f, indent=4, ensure_ascii=False)
+with open(os.path.join(BASE_DIR, "books.json"), "w", encoding="utf-8") as f:
+    json.dump(books_json, f, indent=4, ensure_ascii=False)

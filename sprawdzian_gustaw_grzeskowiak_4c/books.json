@@ -1,0 +1,61 @@
+[
+    {
+        "Pan_Tadeusz": {
+            "Autor": "Adam Mickiewicz)",
+            "Wypożyczenia": [
+                10,
+                16
+            ],
+            "Średnia": 13.0
+        }
+    },
+    {
+        "Quo_Vadis": {
+            "Autor": "Henryk Sienkiewicz)",
+            "Wypożyczenia": [
+                14,
+                25
+            ],
+            "Średnia": 19.5
+        }
+    },
+    {
+        "Hobbit": {
+            "Autor": "J.R.R. Tolkien)",
+            "Wypożyczenia": [
+                20,
+                40
+            ],
+            "Średnia": 30.0
+        }
+    },
+    {
+        "Rok_1984": {
+            "Autor": "George Orwell)",
+            "Wypożyczenia": [
+                18,
+                5
+            ],
+            "Średnia": 11.5
+        }
+    },
+    {
+        "Lalka": {
+            "Autor": "Bolesław Prus)",
+            "Wypożyczenia": [
+                7
+            ],
+            "Średnia": 7.0
+        }
+    },
+    {
+        "Wladca_Pierscieni": {
+            "Autor": "J.R.R. Tolkien)",
+            "Wypożyczenia": [
+                35,
+                12
+            ],
+            "Średnia": 23.5
+        }
+    }
+]
